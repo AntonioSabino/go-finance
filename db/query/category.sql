@@ -17,18 +17,40 @@ SELECT * FROM categories WHERE id = $1 LIMIT 1;
 
 SELECT *
 FROM categories
-WHERE
+where
     user_id = $1
-    AND type = $2
-    AND title LIKE $3
-    AND description LIKE $4;
+    and type = $2
+    and title like $3
+    and description like $4;
 
--- name: UpdateCategy :one
+-- name: GetCategoriesByUserIdAndType :many
+
+SELECT * FROM categories where user_id = $1 and type = $2;
+
+-- name: GetCategoriesByUserIdAndTypeAndTitle :many
+
+SELECT *
+FROM categories
+where
+    user_id = $1
+    and type = $2
+    and title like $3;
+
+-- name: GetCategoriesByUserIdAndTypeAndDescription :many
+
+SELECT *
+FROM categories
+where
+    user_id = $1
+    and type = $2
+    and description like $3;
+
+-- name: UpdateCategories :one
 
 UPDATE categories
 SET title = $2, description = $3
 WHERE id = $1 RETURNING *;
 
--- name: DeleteCategory :exec
+-- name: DeleteCategories :exec
 
 DELETE FROM categories WHERE id = $1;
