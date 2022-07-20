@@ -15,7 +15,7 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: postgresgo
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: docker
           POSTGRES_DB: go_finance
         ports:
@@ -29,7 +29,7 @@ jobs:
       - name: Set up Go 1.x
         uses: actions/setup-go@v2
         with:
-          go-version: ^1.15
+          go-version: ^1.18
         id: go
 
       - name: Check out code into the Go module directory
